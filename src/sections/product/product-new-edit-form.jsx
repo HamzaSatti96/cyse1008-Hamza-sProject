@@ -57,11 +57,11 @@ export default function ProductNewEditForm({ currentProduct }) {
 
   const NewProductSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-   // images: Yup.array().min(1, 'Images is required'),
+    // images: Yup.array().min(1, 'Images is required'),
     tags: Yup.array().min(2, 'Must have at least 2 tags'),
     category: Yup.string().required('Category is required'),
     price: Yup.number().moreThan(0, 'Price should not be $0.00'),
-  //   description: Yup.string().required('Description is required'),
+    //   description: Yup.string().required('Description is required'),
     // not required
     taxes: Yup.number(),
     newLabel: Yup.object().shape({
@@ -139,7 +139,7 @@ export default function ProductNewEditForm({ currentProduct }) {
         updatedAt: new Date(), // Timestamp for when the product is updated or created
       };
       console.log({ productData });
-  
+
       // Check if we're updating an existing product or creating a new one
       if (currentProduct) {
         // Update existing product
@@ -156,7 +156,7 @@ export default function ProductNewEditForm({ currentProduct }) {
         console.info('Product created with ID: ', docRef.id);
         enqueueSnackbar('Create success!');
       }
-  
+
       reset();
       router.push(paths.dashboard.product.root);
       console.info('DATA', data);
@@ -165,7 +165,7 @@ export default function ProductNewEditForm({ currentProduct }) {
       enqueueSnackbar('Error updating product!', { variant: 'error' });
     }
   });
-  
+
   const handleDrop = useCallback(
     (acceptedFiles) => {
       const files = values.images || [];
